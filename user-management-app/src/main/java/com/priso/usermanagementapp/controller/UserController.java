@@ -3,6 +3,8 @@ package com.priso.usermanagementapp.controller;
 import java.net.URI;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,17 +21,19 @@ import com.priso.usermanagementapp.service.UserService;
 
 @RestController
 public class UserController {
+
+	Logger log = LoggerFactory.getLogger("UserManagementApp");
 	@Autowired
 	private UserService userService;
 
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
+		log.info("getting users");
 		return userService.getAllUsers();
 	}
 
 	@GetMapping("/user/{id}")
 	public User getUser(@PathVariable("id") String id) {
-		System.out.println(id);
 		return userService.getUser(id);
 	}
 
