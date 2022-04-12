@@ -1,0 +1,18 @@
+server:
+  port: 8083
+
+app:
+  server:
+    name: general
+    detail: this is general server
+    
+spring:
+  profiles:
+    active:
+      - test
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservices
+    username: root
+    password: root
+  application:
+    name: This is the demo project for spring profiles

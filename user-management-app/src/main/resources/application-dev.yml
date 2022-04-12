@@ -1,0 +1,10 @@
+app:
+  server:
+    name: tomcat
+    detail: this is tomcat for dev
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservices
+    username: root
+    password: root
