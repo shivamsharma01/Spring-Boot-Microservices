@@ -14,14 +14,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import com.priso.UserManagementClient.dto.User;
 
+@Component
 public class Exchange {
 
-	private static Logger logger = LoggerFactory.getLogger(Exchange.class);
 	private static RestTemplate restTemplate = new RestTemplate();
+	private static Logger logger = LoggerFactory.getLogger(Exchange.class);
 	private static final String baseUrl = "http://localhost:8082/springDataDemo";
 	private static final HttpHeaders headers;
 
