@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +34,21 @@ public class UserController {
 		return userService.findAllUsers();
 	}
 
+	@PostMapping("/users")
+	public void addAllUsers(@RequestBody List<User> users) {
+		log.info("adding users...");
+		userService.addAllUsers(users);
+	}
+
+	@DeleteMapping("/users")
+	public void deleteAllUsers() {
+		log.info("deleting users...");
+		userService.deleteAllUsers();
+	}
+
 	@GetMapping("/user/{id}")
 	public User getUser(@PathVariable("id") Long id) {
+		log.info(String.format("Requesting user with id %d", id));
 		return userService.findUserById(id);
 	}
 
@@ -68,13 +82,19 @@ public class UserController {
 
 	@GetMapping("/getAllSortedUsers/{sortingParam}")
 	public List<User> getAllSortedUsers(@PathVariable("sortingParam") String sortingParam) {
-		return userService.findSortedUsers(sortingParam);
+		return userService.getAllSortedUsers(sortingParam);
 	}
 
 	@GetMapping("/getAllSortedUsersByGender/{gender}/{sortingParam}")
 	public List<User> getAllUsersByGenderAndSort(@PathVariable("gender") String gender,
 			@PathVariable("sortingParam") String sortingParam) {
 		return userService.getAllUsersByGenderAndSort(gender, sortingParam);
+	}
+
+	@GetMapping("/getAllPagedUsers/{pageNumber}/{noOfElements}")
+	public Page<User> getAllPagedUsers(@PathVariable("pageNumber") String pageNumber,
+			@PathVariable("noOfElements") String noOfElements) {
+		return userService.getAllPagedUsers(Integer.parseInt(pageNumber), Integer.parseInt(noOfElements));
 	}
 
 }

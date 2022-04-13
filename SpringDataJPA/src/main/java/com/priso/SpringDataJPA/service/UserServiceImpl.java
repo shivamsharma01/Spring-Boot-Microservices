@@ -5,6 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -67,8 +69,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> findSortedUsers(String sortingParam) {
+	public List<User> getAllSortedUsers(String sortingParam) {
 		return (List<User>) userRepository.findAll(Sort.by(sortingParam));
+	}
+
+	@Override
+	public Page<User> getAllPagedUsers(int pageNumber, int noOfElementsInAPage) {
+		return userRepository.findAll(PageRequest.of(pageNumber, noOfElementsInAPage));
+	}
+
+	@Override
+	public void addAllUsers(List<User> users) {
+		userRepository.saveAll(users);
+	}
+
+	@Override
+	public void deleteAllUsers() {
+		userRepository.deleteAll();
 	}
 
 }
