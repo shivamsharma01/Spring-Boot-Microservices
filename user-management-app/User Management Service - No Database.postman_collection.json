@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "f7f3509a-26e4-444b-a7ff-68e02a4a8be2",
-		"name": "New Collection",
+		"name": "User Management Service - No Database",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,13 +11,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{domain}}:{{user_app_port}}/users",
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/users",
 					"protocol": "http",
 					"host": [
 						"{{domain}}"
 					],
 					"port": "{{user_app_port}}",
 					"path": [
+						"{{app_name}}",
 						"users"
 					]
 				}
@@ -30,15 +31,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{domain}}:{{user_app_port}}/user/{{userId}}",
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/user/{{user_id}}",
 					"protocol": "http",
 					"host": [
 						"{{domain}}"
 					],
 					"port": "{{user_app_port}}",
 					"path": [
+						"{{app_name}}",
 						"user",
-						"{{userId}}"
+						"{{user_id}}"
 					]
 				}
 			},
@@ -66,13 +68,14 @@
 					"raw": "{\r\n    \"id\": \"1\",\r\n    \"name\": \"Shivam\",\r\n    \"address\": \"New Delhi\"\r\n}"
 				},
 				"url": {
-					"raw": "http://{{domain}}:{{user_app_port}}/user",
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/user",
 					"protocol": "http",
 					"host": [
 						"{{domain}}"
 					],
 					"port": "{{user_app_port}}",
 					"path": [
+						"{{app_name}}",
 						"user"
 					]
 				}
@@ -101,13 +104,14 @@
 					"raw": "{\r\n    \"id\": \"1\",\r\n    \"name\": \"Shivam Sharma\",\r\n    \"address\": \"New Delhi\"\r\n}"
 				},
 				"url": {
-					"raw": "http://{{domain}}:{{user_app_port}}/user",
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/user",
 					"protocol": "http",
 					"host": [
 						"{{domain}}"
 					],
 					"port": "{{user_app_port}}",
 					"path": [
+						"{{app_name}}",
 						"user"
 					]
 				}
@@ -136,15 +140,99 @@
 					"raw": "{\r\n    \"id\": \"1\",\r\n    \"name\": \"Shivam\",\r\n    \"address\": \"New Delhi\"\r\n}"
 				},
 				"url": {
-					"raw": "http://{{domain}}:{{user_app_port}}/user/{{userId}}",
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/user/{{user_id}}",
 					"protocol": "http",
 					"host": [
 						"{{domain}}"
 					],
 					"port": "{{user_app_port}}",
 					"path": [
+						"{{app_name}}",
 						"user",
-						"{{userId}}"
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actuator",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/actuator",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{user_app_port}}",
+					"path": [
+						"{{app_name}}",
+						"actuator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actuator health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/actuator/health",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{user_app_port}}",
+					"path": [
+						"{{app_name}}",
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actuator info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/actuator/info",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{user_app_port}}",
+					"path": [
+						"{{app_name}}",
+						"actuator",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actuator beans",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/actuator/beans",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{user_app_port}}",
+					"path": [
+						"{{app_name}}",
+						"actuator",
+						"beans"
 					]
 				}
 			},
