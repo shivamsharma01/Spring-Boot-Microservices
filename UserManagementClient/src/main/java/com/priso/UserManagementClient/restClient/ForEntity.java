@@ -3,37 +3,41 @@ package com.priso.UserManagementClient.restClient;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.priso.UserManagementClient.dto.User;
 
 public class ForEntity {
-
+	
+	private static Logger logger = LoggerFactory.getLogger(ForEntity.class);
 	private static RestTemplate restTemplate = new RestTemplate();
 	private static final String baseUrl = "http://localhost:8082/springDataDemo";
 
 	public void run() {
+		logger.info("Running methods of ForEntity class");
 		try {
+			postCalls();
 			getCalls();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		postCalls();
 	}
 
 	private void getCalls() throws IOException {
-		useExchangeMethodsOfRestTemplateWithUser();
-		useExchangeMethodsOfRestTemplateWithUsers();
+		useForEntityMethodsOfRestTemplateWithUser();
+		useForEntityMethodsOfRestTemplateWithUsers();
 	}
 
-	private void useExchangeMethodsOfRestTemplateWithUser() {
+	private void useForEntityMethodsOfRestTemplateWithUser() {
 		ResponseEntity<User> responseEntity = restTemplate.getForEntity(String.format("%s/%s/%d/", baseUrl, "user", 22),
 				User.class);
 		printResponse(responseEntity);
 	}
 
-	private void useExchangeMethodsOfRestTemplateWithUsers() {
+	private void useForEntityMethodsOfRestTemplateWithUsers() {
 		ResponseEntity<List> responseEntity = restTemplate.getForEntity(String.format("%s/%s", baseUrl, "users"),
 				List.class);
 		printResponse(responseEntity);
@@ -55,10 +59,10 @@ public class ForEntity {
 		user.setLastName("User");
 		user.setAddress("Microservice");
 		user.setGender("Male");
-		useExchangeMethodsOfRestTemplateWithUser(user);
+		useForEntityMethodsOfRestTemplateWithUser(user);
 	}
 
-	private void useExchangeMethodsOfRestTemplateWithUser(User user) {
+	private void useForEntityMethodsOfRestTemplateWithUser(User user) {
 		ResponseEntity<String> responseEntity = restTemplate.postForEntity(String.format("%s/%s", baseUrl, "user"),
 				user, String.class);
 		printResponse(responseEntity);

@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -18,6 +20,7 @@ import com.priso.UserManagementClient.dto.User;
 
 public class Exchange {
 
+	private static Logger logger = LoggerFactory.getLogger(Exchange.class);
 	private static RestTemplate restTemplate = new RestTemplate();
 	private static final String baseUrl = "http://localhost:8082/springDataDemo";
 	private static final HttpHeaders headers;
@@ -28,12 +31,13 @@ public class Exchange {
 	}
 
 	public void run() {
+		logger.info("Running methods of ForEntity class");
 		try {
+			postCalls();
 			getCalls();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		postCalls();
 	}
 
 	private void printResponse(ResponseEntity<?> responseEntity) {
