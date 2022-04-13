@@ -4,16 +4,18 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.priso.SpringDataJPA.dto.User;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
+//public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
 	@Transactional
 	@Modifying
@@ -25,4 +27,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
 	@Query("select u from User u where u.gender=:gender")
 	List<User> getAllUsersByGender(@Param("gender") String gender);
+
+	@Query("select u from User u where u.gender=:gender")
+	List<User> getAllUsersByGenderAndSort(@Param("gender") String gender, Sort sortingParam);
+
 }

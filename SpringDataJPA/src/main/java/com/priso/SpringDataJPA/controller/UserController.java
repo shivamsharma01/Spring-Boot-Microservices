@@ -66,4 +66,15 @@ public class UserController {
 		return userService.getAllUsersByGender(gender);
 	}
 
+	@GetMapping("/getAllSortedUsers/{sortingParam}")
+	public List<User> getAllSortedUsers(@PathVariable("sortingParam") String sortingParam) {
+		return userService.findSortedUsers(sortingParam);
+	}
+
+	@GetMapping("/getAllSortedUsersByGender/{gender}/{sortingParam}")
+	public List<User> getAllUsersByGenderAndSort(@PathVariable("gender") String gender,
+			@PathVariable("sortingParam") String sortingParam) {
+		return userService.getAllUsersByGenderAndSort(gender, sortingParam);
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.priso.SpringDataJPA.dto.User;
@@ -58,6 +59,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getAllUsersByGender(String gender) {
 		return userRepository.getAllUsersByGender(gender);
+	}
+
+	@Override
+	public List<User> getAllUsersByGenderAndSort(String gender, String sortingParam) {
+		return (List<User>) userRepository.getAllUsersByGenderAndSort(gender, Sort.by(sortingParam));
+	}
+
+	@Override
+	public List<User> findSortedUsers(String sortingParam) {
+		return (List<User>) userRepository.findAll(Sort.by(sortingParam));
 	}
 
 }

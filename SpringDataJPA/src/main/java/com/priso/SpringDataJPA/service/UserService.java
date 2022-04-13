@@ -19,4 +19,8 @@ public interface UserService {
 
 	List<User> getAllUsersByGender(String gender);
 
+	List<User> getAllUsersByGenderAndSort(String gender, String sortingParam);
+
+	List<User> findSortedUsers(String sortingParam);
+
 }
