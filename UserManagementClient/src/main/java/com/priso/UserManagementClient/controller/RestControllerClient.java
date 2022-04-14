@@ -3,6 +3,7 @@ package com.priso.UserManagementClient.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -34,6 +35,9 @@ public class RestControllerClient {
 	@SuppressWarnings("unchecked")
 	@GetMapping("/test2")
 	public List<User> test2() {
+		//ResponseEntity<List> list = restTemplate.getForEntity("https://localhost:8082/springDataDemo/users", List.class);
+		//System.out.println(list.getStatusCodeValue());
+		//System.out.println(list.getBody());
 		return restTemplate.getForObject("users", List.class);
 	}
 }

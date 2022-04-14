@@ -2,6 +2,12 @@ server:
   port: 8082
   servlet:
     context-path: /springDataDemo
+  
+  ssl:
+    enabled: true
+    key-store: src/main/resources/ssl_server.jks
+    key-store-password: priso_root
+     
 app:
   server:
     name: jpa server
@@ -17,3 +23,5 @@ spring:
     password: root
   application:
     name: This is the demo project for spring data jpa
+    
+  
