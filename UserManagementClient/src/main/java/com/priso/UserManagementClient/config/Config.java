@@ -17,6 +17,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.TrustStrategy;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,8 +32,18 @@ public class Config {
 	private static final String baseUrl = "https://localhost:8082/springDataDemo/";
 
 	@Bean
-	public RestTemplate getRestTemplateBean(RestTemplateBuilder builder) {
+	@Qualifier("ssl_disabled")
+	public RestTemplate getRestTemplateBeanNoSSL(RestTemplateBuilder builder) {
 		return builder.requestFactory(() -> disableSSl()).uriTemplateHandler(new DefaultUriBuilderFactory(baseUrl))
+				.setReadTimeout(Duration.ofMillis(2000)).build();
+	}
+
+	@Bean
+	@Qualifier("ssl_enabled")
+	public RestTemplate getRestTemplateBeanWithSSL(RestTemplateBuilder builder) {
+		return builder
+				.requestFactory(() -> validateSSL())
+				.uriTemplateHandler(new DefaultUriBuilderFactory(baseUrl))
 				.setReadTimeout(Duration.ofMillis(2000)).build();
 	}
 
@@ -63,14 +74,13 @@ public class Config {
 	}
 
 	private HttpComponentsClientHttpRequestFactory validateSSL() {
-		String location = "D:\\ssl_server.jks";
-		String pass = "greenlearner";
+		String location = "E:/Spring-Boot-Microservices/cert/ssl_server.jks";
+		String pass = "priso_root";
 		SSLContext sslContext = null;
 		try {
 			sslContext = SSLContextBuilder.create()
 					.loadTrustMaterial(ResourceUtils.getFile(location), pass.toCharArray()).build();
 		} catch (Exception e) {
-
 		}
 		SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext, new LocalHostnameVerifier());
 		CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(csf).build();
