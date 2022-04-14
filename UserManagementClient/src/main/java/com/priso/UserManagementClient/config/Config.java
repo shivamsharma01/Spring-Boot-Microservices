@@ -19,8 +19,10 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.TrustStrategy;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.boot.web.client.RestTemplateCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.client.RestTemplate;
@@ -33,6 +35,7 @@ public class Config {
 
 	@Bean
 	@Qualifier("ssl_disabled")
+	@DependsOn("restTemplateBuilder")
 	public RestTemplate getRestTemplateBeanNoSSL(RestTemplateBuilder builder) {
 		return builder.requestFactory(() -> disableSSl()).uriTemplateHandler(new DefaultUriBuilderFactory(baseUrl))
 				.setReadTimeout(Duration.ofMillis(2000)).build();
@@ -40,11 +43,26 @@ public class Config {
 
 	@Bean
 	@Qualifier("ssl_enabled")
+	@DependsOn("restTemplateBuilder")
 	public RestTemplate getRestTemplateBeanWithSSL(RestTemplateBuilder builder) {
-		return builder
-				.requestFactory(() -> validateSSL())
-				.uriTemplateHandler(new DefaultUriBuilderFactory(baseUrl))
+		return builder.requestFactory(() -> validateSSL()).uriTemplateHandler(new DefaultUriBuilderFactory(baseUrl))
 				.setReadTimeout(Duration.ofMillis(2000)).build();
+	}
+
+	@Bean
+	public MyRequestInterceptor myRequestInterceptor() {
+		return new MyRequestInterceptor();
+	}
+
+	@Bean
+	public MyRequestTemplateCustomizer requestTemplateCustomizer() {
+		return new MyRequestTemplateCustomizer();
+	}
+
+	@Bean
+	@DependsOn("requestTemplateCustomizer")
+	public RestTemplateBuilder restTemplateBuilder(RestTemplateCustomizer restTemplateCustomizer) {
+		return new RestTemplateBuilder(restTemplateCustomizer);
 	}
 
 	private HttpComponentsClientHttpRequestFactory disableSSl() {
