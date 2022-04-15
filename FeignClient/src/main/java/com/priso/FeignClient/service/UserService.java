@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.priso.FeignClient.dto.User;
 
-@FeignClient(name = "feignUserService", url = "http://localhost:8082/springDataDemo")
+@FeignClient(name = "${service.name}", url = "${service.url}")
 public interface UserService {
 	@GetMapping("/user/{id}")
 	User getUser(@PathVariable("id") String id);
