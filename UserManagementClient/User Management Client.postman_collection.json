@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "ad3573cf-1f27-4846-a6ce-dda91da97abc",
+		"name": "User Management Client",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test All Users of Management Service from Management Client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{user_client_app_port}}/test2",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{user_client_app_port}}",
+					"path": [
+						"test2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test APIs of User Management Service via User Management Client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{user_client_app_port}}/test",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{user_client_app_port}}",
+					"path": [
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

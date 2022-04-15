@@ -4,7 +4,7 @@ server:
     context-path: /springDataDemo
   
   ssl:
-    enabled: true
+    enabled: false
     key-store: E:/Spring-Boot-Microservices/cert/ssl_server.jks
     key-store-password: priso_root
      

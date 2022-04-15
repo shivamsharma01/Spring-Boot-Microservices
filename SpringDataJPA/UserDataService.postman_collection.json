@@ -11,8 +11,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/users",
-					"protocol": "http",
+					"raw": "https://{{domain}}:{{user_app_port}}/{{app_name}}/users",
+					"protocol": "https",
 					"host": [
 						"{{domain}}"
 					],
@@ -42,8 +42,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/user/{{user_id}}",
-					"protocol": "http",
+					"raw": "https://{{domain}}:{{user_app_port}}/{{app_name}}/user/{{user_id}}",
+					"protocol": "https",
 					"host": [
 						"{{domain}}"
 					],
@@ -122,6 +122,106 @@
 			"response": []
 		},
 		{
+			"name": "get All sorted users by sorting param",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"sortingParam\", \"address\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/getAllSortedUsers/{{sortingParam}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{user_app_port}}",
+					"path": [
+						"{{app_name}}",
+						"getAllSortedUsers",
+						"{{sortingParam}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get All Paged Users",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"pNo\", \"2\");\r",
+							"pm.environment.set(\"eNo\", \"4\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/getAllPagedUsers/{{pNo}}/{{eNo}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{user_app_port}}",
+					"path": [
+						"{{app_name}}",
+						"getAllPagedUsers",
+						"{{pNo}}",
+						"{{eNo}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get All sorted users by sorting param for given gender",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"user_gender\", \"Male\");\r",
+							"pm.environment.set(\"sortingParam\", \"lastName\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/getAllSortedUsersByGender/{{user_gender}}/{{sortingParam}}",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{user_app_port}}",
+					"path": [
+						"{{app_name}}",
+						"getAllSortedUsersByGender",
+						"{{user_gender}}",
+						"{{sortingParam}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "add user",
 			"request": {
 				"method": "POST",
@@ -140,7 +240,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Jade\",\r\n    \"lastName\": \"Steel\",\r\n    \"gender\": \"Female\",\r\n    \"address\": \"USA\"\r\n}"
+					"raw": "{\r\n    \"firstName\": \"Brett\",\r\n    \"lastName\": \"Hart\",\r\n    \"gender\": \"Male\",\r\n    \"address\": \"USA\"\r\n}"
 				},
 				"url": {
 					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/user",
@@ -152,6 +252,42 @@
 					"path": [
 						"{{app_name}}",
 						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add users",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": 2,\r\n        \"firstName\": \"Shivam\",\r\n        \"lastName\": \"Sharma\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"Niti Khand 2\"\r\n    },\r\n    {\r\n        \"id\": 3,\r\n        \"firstName\": \"Shyam\",\r\n        \"lastName\": \"Sharma\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"Niti Khand 2\"\r\n    },\r\n    {\r\n        \"id\": 4,\r\n        \"firstName\": \"Jack\",\r\n        \"lastName\": \"Dale\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 5,\r\n        \"firstName\": \"Jack\",\r\n        \"lastName\": \"Steel\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 6,\r\n        \"firstName\": \"Jade\",\r\n        \"lastName\": \"Steel\",\r\n        \"gender\": \"Female\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 7,\r\n        \"firstName\": \"Kelly\",\r\n        \"lastName\": \"Moore\",\r\n        \"gender\": \"Female\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 8,\r\n        \"firstName\": \"Mike\",\r\n        \"lastName\": \"Murphy\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 9,\r\n        \"firstName\": \"Claire\",\r\n        \"lastName\": \"Dunphy\",\r\n        \"gender\": \"Female\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 10,\r\n        \"firstName\": \"Sherry\",\r\n        \"lastName\": \"Langmore\",\r\n        \"gender\": \"Female\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 11,\r\n        \"firstName\": \"Shawn\",\r\n        \"lastName\": \"Murphy\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 12,\r\n        \"firstName\": \"Tom\",\r\n        \"lastName\": \"Holland\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 13,\r\n        \"firstName\": \"Jenna\",\r\n        \"lastName\": \"Jet\",\r\n        \"gender\": \"Female\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 14,\r\n        \"firstName\": \"Harry\",\r\n        \"lastName\": \"Brown\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 15,\r\n        \"firstName\": \"Kurt\",\r\n        \"lastName\": \"Connors\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 16,\r\n        \"firstName\": \"George\",\r\n        \"lastName\": \"Michaels\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 17,\r\n        \"firstName\": \"George\",\r\n        \"lastName\": \"Clooney\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 18,\r\n        \"firstName\": \"Seth\",\r\n        \"lastName\": \"Rogen\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 19,\r\n        \"firstName\": \"Lary\",\r\n        \"lastName\": \"Page\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 20,\r\n        \"firstName\": \"Abraham\",\r\n        \"lastName\": \"Lincoln\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    },\r\n    {\r\n        \"id\": 21,\r\n        \"firstName\": \"Brett\",\r\n        \"lastName\": \"Hart\",\r\n        \"gender\": \"Male\",\r\n        \"address\": \"USA\"\r\n    }\r\n]"
+				},
+				"url": {
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/users",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{user_app_port}}",
+					"path": [
+						"{{app_name}}",
+						"users"
 					]
 				}
 			},
@@ -219,7 +355,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"1\",\r\n    \"name\": \"Shivam\",\r\n    \"address\": \"New Delhi\"\r\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/user/{{user_id}}",
@@ -232,6 +368,42 @@
 						"{{app_name}}",
 						"user",
 						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete all",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{domain}}:{{user_app_port}}/{{app_name}}/users",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "{{user_app_port}}",
+					"path": [
+						"{{app_name}}",
+						"users"
 					]
 				}
 			},

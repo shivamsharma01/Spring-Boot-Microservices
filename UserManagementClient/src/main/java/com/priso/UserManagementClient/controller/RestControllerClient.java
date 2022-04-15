@@ -23,7 +23,7 @@ public class RestControllerClient {
 	@Autowired
 	private ForObject forObject;
 	@Autowired
-	@Qualifier("ssl_enabled")
+	@Qualifier("ssl_disabled")
 	private RestTemplate restTemplate;
 
 	@GetMapping("/test")

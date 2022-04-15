@@ -31,7 +31,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
 @Configuration
 public class Config {
 
-	private static final String baseUrl = "https://localhost:8082/springDataDemo/";
+	private static final String baseUrl = "http://localhost:8082/springDataDemo/";
 
 	@Bean
 	@Qualifier("ssl_disabled")
