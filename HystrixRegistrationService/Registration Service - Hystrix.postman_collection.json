@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "d5072f5e-db2d-4e8c-b7bc-fafdcf58a51d",
+		"name": "Registration Service - Hystrix",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a Seller",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : \"12\",\r\n    \"firstName\" : \"\",\r\n    \"lastName\" : \"\",\r\n    \"emailId\" : \"seller3@fake.com\",\r\n    \"itemsSold\" : [{\"id\": 12, \"name\":\"wrist watch\", \"category\":\"watch\", \"price\": 123.23}, {\"id\": 22, \"name\":\"wrist watch\", \"category\":\"watch\", \"price\": 123.23}]\r\n}"
+				},
+				"url": {
+					"raw": "http://{{domain}}:8086/registration/addSeller",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "8086",
+					"path": [
+						"registration",
+						"addSeller"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Sellers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8086/registration/sellersList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8086",
+					"path": [
+						"registration",
+						"sellersList"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

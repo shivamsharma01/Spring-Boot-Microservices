@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "9aa0f592-380b-4c0d-a83b-7f5eab974f0d",
+		"name": "Order Management - Hystrix",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a Seller",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : \"32\",\r\n    \"firstName\" : \"\",\r\n    \"lastName\" : \"\",\r\n    \"emailId\" : \"seller3@fake.com\",\r\n    \"itemsSold\" : [{\"id\": 32, \"name\":\"wrist watch\", \"category\":\"watch\", \"price\": 123.23}, {\"id\": 22, \"name\":\"wrist watch\", \"category\":\"watch\", \"price\": 123.23}]\r\n}"
+				},
+				"url": {
+					"raw": "http://{{domain}}:8085/register/seller",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "8085",
+					"path": [
+						"register",
+						"seller"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Sellers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:8085/sellerList",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "8085",
+					"path": [
+						"sellerList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hystrix",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:8085/hystrix",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "8085",
+					"path": [
+						"hystrix"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hystrix stream",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}:8085/hystrix.stream",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"port": "8085",
+					"path": [
+						"hystrix.stream"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
