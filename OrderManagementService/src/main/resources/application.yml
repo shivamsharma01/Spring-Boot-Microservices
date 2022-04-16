@@ -2,7 +2,9 @@ server:
   port: 8085
 
 hystrix:
-  
+  dashboard:
+    proxy-stream-allow-list: "*"
+    
   command:
     ordermanagement:
       execution:
@@ -19,3 +21,11 @@ hystrix:
   threadpool:
     default:
       coreSize: 10
+
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: "*" 
+# hystrix.stream, health, info, metrics

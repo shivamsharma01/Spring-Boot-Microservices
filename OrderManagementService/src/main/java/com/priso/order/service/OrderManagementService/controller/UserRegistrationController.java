@@ -13,11 +13,6 @@ import com.priso.order.service.OrderManagementService.service.UserRegistrationSe
 
 import java.util.List;
 
-/**
- * @author -
- *         GreenLearner(https://www.youtube.com/channel/UCaH2MTg94hrJZTolW01a3ZA)
- */
-
 @RestController
 public class UserRegistrationController {
 

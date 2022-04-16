@@ -10,10 +10,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-/**
- * @author - GreenLearner(https://www.youtube.com/channel/UCaH2MTg94hrJZTolW01a3ZA)
- */
-
 @Service
 public class UserRegistrationHystrix {
     Logger logger = LoggerFactory.getLogger(UserRegistrationHystrix.class);
