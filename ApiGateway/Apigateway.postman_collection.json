@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "f3c6008b-1cd5-4fec-8edf-53179de2c9fe",
+		"name": "Apigateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Diseases Message",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8901/diseases/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8901",
+					"path": [
+						"diseases",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Doctors Message",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8902/doctors/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8902",
+					"path": [
+						"doctors",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patients Message",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8903/patients/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8903",
+					"path": [
+						"patients",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Doctors message via Api gateway",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8900/doctors/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8900",
+					"path": [
+						"doctors",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Diseases message via Api gateway",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8900/diseases/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8900",
+					"path": [
+						"diseases",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patients message via Api gateway",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8900/patients/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8900",
+					"path": [
+						"patients",
+						"message"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
